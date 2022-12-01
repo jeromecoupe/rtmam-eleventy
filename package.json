@@ -4,6 +4,7 @@
   "description": "Testing Eleventy at IAD",
   "main": "index.js",
   "scripts": {
+    "clean": "rimraf \"./dist\"",
     "server": "browser-sync start --server \"./dist\" --files \"./dist\" --no-open",
     "eleventy": "npx @11ty/eleventy",
     "styles:dev": "sass --embed-source-map --source-map-urls=\"absolute\" \"./src/assets/scss/main.scss\" \"./dist/assets/css/main.css\"",
@@ -11,7 +12,7 @@
     "watch:styles": "onchange \"./src/assets/scss/**/*\" -- npm run styles:dev",
     "watch:eleventy": "npx @11ty/eleventy --watch",
     "dev": "npm-run-all -p server watch:*",
-    "build": "npm-run-all -p eleventy styles:prod"
+    "build": "npm-run-all clean -p eleventy styles:prod"
   },
   "keywords": [
     "eleventy",
@@ -25,6 +26,7 @@
     "browser-sync": "^2.27.10",
     "npm-run-all": "^4.1.5",
     "onchange": "^7.1.0",
+    "rimraf": "^3.0.2",
     "sass": "^1.56.1"
   }
 }
