@@ -1,3 +1,3 @@
 module.exports = {
-  permalink: "/pouet/{{ page.fileSlug }}/index.html",
+  permalink: "/blogposts/{{ page.fileSlug }}/index.html",
 };
