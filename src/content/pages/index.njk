@@ -11,5 +11,19 @@ permalink: index.html
   <h1>Home</h1>
   <p>Hello Eleventy test</p>
   <p>The answer to everything is: {{ 40 + 2 }}</p>
-  
+
+  {# on boucle sur la collection blogposts (crée avec un glob dans eleventy.js) #}
+  {% for item in collections.blogposts %}
+    {% if loop.first %}<ul>{% endif %}
+
+      <li>
+        <article>
+          <h2><a href="{{ item.url }}">{{ item.data.title }}</a></h2>
+          <p><time datetime="{{ item.date }}">{{ item.date }}</time></p>
+        </article>
+      </li>
+
+    {% if loop.last %}</ul>{% endif %}
+  {% endfor %}
+
 {% endblock %}
