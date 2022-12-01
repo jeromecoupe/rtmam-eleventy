@@ -1,0 +1,22 @@
+<header>
+  <nav>
+
+    {% for item in mainnav %}
+      {% if loop.first %}<ul>{% endif %}
+        
+        {# set current class and aria #}
+        {% set currentClass = "" %}
+        {% set currentAria = "" %}
+        {% if item.trigger == currentSection %}
+          {% set currentAria = "aria-current=\"page\"" %}
+          {% set currentClass = "is-current" %}
+        {% endif %}
+
+        <li>
+          <a href="{{ item.url }}" class="{{ currentClass }}" {{ currentAria|safe }}>{{ item.label }}</a>
+        </li>
+      {% if loop.last %}</ul>{% endif %}
+    {% endfor %}
+
+  </nav>
+</header>

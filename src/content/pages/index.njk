@@ -1,6 +1,15 @@
+---
+permalink: index.html
+---
+
 {% extends "layouts/base.njk" %}
 
+{% set currentSection = "home" %}
+
 {% block content %}
+
+  <h1>Home</h1>
   <p>Hello Eleventy test</p>
   <p>The answer to everything is: {{ 40 + 2 }}</p>
+  
 {% endblock %}
