@@ -1,6 +1,7 @@
 module.exports = function (eleventyConfig) {
-  // add watch target
-  eleventyConfig.addWatchTarget("./src/assets/scss/");
+  // copy files
+  eleventyConfig.addPassthroughCopy("./src/assets/fonts");
+  eleventyConfig.addPassthroughCopy("./src/assets/img");
 
   // override default config
   return {

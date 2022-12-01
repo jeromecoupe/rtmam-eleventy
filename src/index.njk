@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "layouts/base.njk" %}
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eleventy is awesome</title>
-  <link rel="stylesheet" href="assets/css/main.css">
-</head>
-
-<body>
-  <p>Hello Eleventy test me again</p>
+{% block content %}
+  <p>Hello Eleventy test</p>
   <p>The answer to everything is: {{ 40 + 2 }}</p>
-</body>
-
-</html>
+{% endblock %}
