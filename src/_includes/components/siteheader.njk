@@ -15,6 +15,7 @@
         <li>
           <a href="{{ item.url }}" class="{{ currentClass }}" {{ currentAria|safe }}>{{ item.label }}</a>
         </li>
+        
       {% if loop.last %}</ul>{% endif %}
     {% endfor %}
 
