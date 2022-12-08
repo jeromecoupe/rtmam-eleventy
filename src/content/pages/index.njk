@@ -12,17 +12,17 @@ permalink: index.html
   <p>Hello Eleventy test</p>
   <p>The answer to everything is: {{ 40 + 2 }}</p>
 
-  {# on boucle sur la collection blogposts (crée avec un glob dans eleventy.js) #}
-  {% for item in collections.blogposts %}
-    {% if loop.first %}<ul>{% endif %}
+  <h2>{{ ships|length }} Ships</h2>
 
+  {% for ship in ships %}
+    {% if loop.first %}<ul>{% endif %}
       <li>
         <article>
-          <h2><a href="{{ item.url }}">{{ item.data.title }}</a></h2>
-          <p><time datetime="{{ item.date }}">{{ item.date }}</time></p>
+          <h2>{{ ship.name }}</h2>
+          <p>{{ ship.manufacturer }}</p>
+          <p>{{ ship.cost_in_credits }}</p>
         </article>
       </li>
-
     {% if loop.last %}</ul>{% endif %}
   {% endfor %}
 

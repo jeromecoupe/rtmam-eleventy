@@ -1,0 +1,36 @@
+---
+pagination: 
+  data: collections.blogposts
+  size: 1
+permalink: /blog{% if pagination.pageNumber > 0 %}/{{ pagination.pageNumber + 1 }}{% endif %}/index.html
+---
+
+{% extends "layouts/base.njk" %}
+
+{% block content %}
+
+  <h1>Blogposts</h1>
+  
+  {# on boucle sur la collection blogposts (crée avec un glob dans eleventy.js) #}
+  {% for item in pagination.items %}
+    {% if loop.first %}<ul>{% endif %}
+
+      <li>
+        <article>
+          <h2><a href="{{ item.url }}">{{ item.data.title }}</a></h2>
+          <p><time datetime="{{ item.date|ISODate }}">{{ item.date|displayDate }}</time></p>
+        </article>
+      </li>
+
+    {% if loop.last %}</ul>{% endif %}
+  {% endfor %}
+
+  {% if pagination.hrefs|length > 1 %}
+    <p>
+      Page {{ pagination.pageNumber + 1 }} of {{ pagination.hrefs|length }}: 
+      {% if pagination.href.previous %}<a href="{{ pagination.href.previous }}">Previous</a>{% endif %}
+      {% if pagination.href.next %}<a href="{{ pagination.href.next }}">Next</a>{% endif %}
+    </p>
+  {% endif %}
+
+{% endblock %}
