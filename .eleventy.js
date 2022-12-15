@@ -8,6 +8,10 @@ module.exports = function (eleventyConfig) {
       .reverse();
   });
 
+  eleventyConfig.addCollection("projects", (collectionApi) => {
+    return collectionApi.getFilteredByGlob("./src/content/projects/**/*.md");
+  });
+
   // filter: date Display (for humans)
   eleventyConfig.addFilter("displayDate", (date, locale = "en") => {
     let jsDate = new Date(date);
@@ -22,9 +26,19 @@ module.exports = function (eleventyConfig) {
     return DateTime.fromJSDate(jsDate).toISO();
   });
 
+  // ignore files
+  eleventyConfig.ignores.add("./src/assets/");
+
+  // watch source files
+  eleventyConfig.addWatchTarget("./src/assets/scss/");
+  eleventyConfig.addWatchTarget("./src/assets/js/");
+
   // copy files
   eleventyConfig.addPassthroughCopy("./src/assets/fonts");
   eleventyConfig.addPassthroughCopy("./src/assets/img");
+
+  // wait before generate
+  eleventyConfig.setWatchThrottleWaitTime(200);
 
   // override default config
   return {

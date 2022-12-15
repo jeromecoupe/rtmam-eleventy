@@ -1,11 +1,10 @@
 // modules
 const axios = require("axios");
 
-// number of results to fetch per request
-const RESULTS_PER_REQUEST = 10;
-
 /**
  * Get all ships from the API
+ *
+ * @TODO: add caching - see https://www.webstoemp.com/blog/performant-data-fetching-promises-eleventy/
  * - The API has a limit and will only return 10 ships per request
  * - Do a first request, get 10 ships and the total number of available ships
  * - Calculate how many more requests are needed to get everything
@@ -14,6 +13,7 @@ const RESULTS_PER_REQUEST = 10;
  *
  * @returns {Array} allShips - all the ships returned from the API regardless of the pagination limit
  */
+
 async function getShips() {
   let allShips = [];
   let allPromises = [];
@@ -27,7 +27,7 @@ async function getShips() {
     allShips.push(...results);
 
     // how many more requests do we need
-    let moreRequests = Math.floor(count / RESULTS_PER_REQUEST);
+    let moreRequests = Math.floor(count / results.length);
 
     // additional requests promises
     for (let i = 0; i < moreRequests; i++) {
